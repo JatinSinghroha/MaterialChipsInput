@@ -45,14 +45,14 @@ public class ChipsInput extends ScrollViewMaxHeight {
     private String mHint;
     private ColorStateList mHintColor;
     private ColorStateList mTextColor;
-    private int mMaxRows = 2;
+    private int mMaxRows = 5;
     private ColorStateList mChipLabelColor;
     private boolean mChipHasAvatarIcon = true;
     private boolean mChipDeletable = false;
     private Drawable mChipDeleteIcon;
     private ColorStateList mChipDeleteIconColor;
     private ColorStateList mChipBackgroundColor;
-    private boolean mShowChipDetailed = true;
+    private boolean mShowChipDetailed = false;
     private ColorStateList mChipDetailedTextColor;
     private ColorStateList mChipDetailedDeleteIconColor;
     private ColorStateList mChipDetailedBackgroundColor;
@@ -254,7 +254,7 @@ public class ChipsInput extends ScrollViewMaxHeight {
             }
             // show filterable list
             if(mFilterableListView != null) {
-                if(text.length() > 0)
+                if(text.length() >= 0)
                     mFilterableListView.filterList(text);
                 else
                     mFilterableListView.fadeOut();

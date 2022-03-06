@@ -247,14 +247,14 @@ public class ChipsInput extends ScrollViewMaxHeight {
         }
     }
 
-    public void onTextChanged(CharSequence text) {
+    public void onTextChanged(CharSequence text, Boolean hasFocus) {
         if(mChipsListener != null) {
             for(ChipsListener chipsListener: mChipsListenerList) {
                 chipsListener.onTextChanged(text);
             }
             // show filterable list
             if(mFilterableListView != null) {
-                if(text.length() >= 0)
+                if(hasFocus && text.length() >= 0)
                     mFilterableListView.filterList(text);
                 else
                     mFilterableListView.fadeOut();

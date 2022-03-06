@@ -218,7 +218,7 @@ public class ChipsInput extends ScrollViewMaxHeight {
         if(mTextColor != null)
             editText.setTextColor(mTextColor);
 
-        return editText;
+        return mChipsAdapter.mEditText;
     }
 
     public DetailedChipView getDetailedChipView(ChipInterface chip) {

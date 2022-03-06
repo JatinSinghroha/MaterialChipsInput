@@ -13,6 +13,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.pchmn.materialchips.ChipView;
 import com.pchmn.materialchips.ChipsInput;
@@ -128,10 +129,22 @@ public class ChipsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         mEditText.setSingleLine(true);
         // prevent fullscreen on landscape
         mEditText.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        mEditText.setPrivateImeOptions("nm");
         // no suggestion
         mEditText.setInputType(InputType.TYPE_TEXT_VARIATION_FILTER | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
+        mEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent event) {
+                Boolean handled = false;
+
+                if (i == EditorInfo.IME_ACTION_DONE || event.getKeyCode() == KeyEvent.KEYCODE_ENTER || event.getKeyCode() == EditorInfo.IME_ACTION_NEXT) {
+                    handled = true;
+                    mChipsInput.onDoneClicked();
+                }
+
+                return handled;
+            }
+        });
         // handle back space
         mEditText.setOnKeyListener(new View.OnKeyListener() {
             @Override
